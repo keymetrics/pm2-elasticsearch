@@ -1,0 +1,11 @@
+{
+  "name": "pm2-elastic-monit",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "pmx": "*",
+    "request": "*"
+  }
+}
