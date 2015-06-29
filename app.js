@@ -2,12 +2,20 @@ var stats = require('./lib/stats'),
     docs = require('./lib/docs'),
     tasks = require('./lib/tasks'),
     versions = require('./lib/versions'),
+    request = require('request'),
     pmx = require('pmx'),
     pm2 = require('pm2'),
     shelljs = require('shelljs'),
     fs      = require('fs'),
     path    = require('path');
 
+request('http://localhost:9200/', function (error, response, body) {
+  if (error) {
+    var err = new Error('Problem with your server Elasticsearch');
+    pmx.notify(err);
+    throw err;
+  }
+});
 
 var conf = pmx.initModule({
 
