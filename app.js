@@ -11,7 +11,8 @@ var stats = require('./lib/stats'),
 
 var conf = pmx.initModule({
 
-  pid              : pmx.resolvePidPaths(['/var/run/elasticsearch/elasticsearch.pid']),
+  pid              : pmx.resolvePidPaths(['/var/run/elasticsearch/elasticsearch.pid',
+                                          '/var/run/elasticsearch.pid']),
 
   widget : {
     type             : 'generic',
@@ -31,10 +32,16 @@ var conf = pmx.initModule({
     block : {
       actions : true,
       issues  : true,
-      main_probes : ['Elastic status', 'Total shards', 'Indexes created', 'Store size']
+      meta : false,
+      main_probes : ['Elastic status', 'Total shards', 'Indexes created', 'Elastic Docs', 'Store size', 'Index avg']
     }
 
     // Status
     // Green / Yellow / Red
   }
+});
+
+pmx.action('restart', function(reply) {
+  var child = shelljs.exec('/etc/init.d/elasticsearch restart');
+  return reply(child);
 });
