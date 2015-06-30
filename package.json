@@ -5,9 +5,7 @@
     "start": "node app"
   },
   "dependencies": {
-    "fs": "*",
     "numeral": "*",
-    "path": "*",
     "pm2": "*",
     "pmx": "*",
     "request": "*",
