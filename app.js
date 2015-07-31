@@ -30,7 +30,7 @@ var conf = pmx.initModule({
     // 1 = secondary
     // 2 = main border
     // 3 = secondary border
-    theme            : ['#33CACC', '#39BDB1', 'white', 'white'],
+    theme            : ['#39bdb1', '#1B2228', 'white', '#807C7C'],
 
     el : {
       probes  : true,

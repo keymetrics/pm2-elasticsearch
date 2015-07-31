@@ -10,8 +10,8 @@
     "request": "*",
     "shelljs": "*"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Keymetrics Inc.",
+  "license": "AGPLV3",
   "apps": [
     {
       "script": "app.js"
