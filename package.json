@@ -1,6 +1,6 @@
 {
   "name": "pm2-elasticsearch",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "scripts": {
     "start": "node app"
   },
@@ -10,10 +10,14 @@
     "request": "*",
     "shelljs": "*"
   },
+  "config" : {
+    "es_url" : "http://localhost:9200/"
+  },
   "author": "Keymetrics Inc.",
   "license": "AGPLV3",
   "apps": [
     {
+      "name": "pm2-elasticsearch",
       "script": "app.js"
     }
   ]
