@@ -21,7 +21,6 @@ var conf = pmx.initModule({
     },
 
     block : {
-      actions : true,
       issues  : true,
       meta : true,
       main_probes : ['Elastic status', 'Total shards', 'Indexes created', 'Elastic Docs', 'Store size', 'Index avg']
