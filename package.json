@@ -1,11 +1,10 @@
 {
   "name": "pm2-elasticsearch",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "scripts": {
     "start": "node app"
   },
   "dependencies": {
-    "pm2": "*",
     "pmx": "*",
     "request": "*",
     "shelljs": "*"
