@@ -41,7 +41,12 @@ pmx.initModule({
       Probe = pmx.probe();
 
   global.errorRate = Probe.meter({
-    name : 'Error rate'
+    name : 'Error rate',
+    alert : {
+      mode : 'threshold-avg',
+      value : 1,
+      msg : 'Lot of queries are being failed'
+    }
   });
 
   request(conf.es_url, function (error, response, body) {
