@@ -1,4 +1,14 @@
-var pmx = require('pmx');
+/**
+ * Copyright 2016 Keymetrics Team. All rights reserved.
+ * Use of this source code is governed by a license that
+ * can be found in the LICENSE file.
+ */
+
+var pmx             = require('pmx');
+var exec            = require('child_process').exec;
+var elasticsearch   = require('elasticsearch');
+var Probe           = pmx.probe();
+var Stats           = require('./lib/stats');
 
 pmx.initModule({
 
@@ -22,55 +32,36 @@ pmx.initModule({
     block : {
       issues  : true,
       meta : true,
-      main_probes : ['Elastic status', 'Total shards', 'Indexes created', 'Elastic Docs', 'Store size', 'Index avg']
+      main_probes : ['Elastic status', 'Nodes', 'Shards', 'Indices', 'Documents', 'Store size']
     }
-
-    // Status
-    // Green / Yellow / Red
   }
 }, function(err, conf) {
-  var stats = require('./lib/stats'),
-      docs = require('./lib/docs'),
-      tasks = require('./lib/tasks'),
-      versions = require('./lib/versions'),
-      request = require('request'),
-      shelljs = require('shelljs'),
-      fs      = require('fs'),
-      path    = require('path'),
-      actions = require('./lib/actions'),
-      Probe = pmx.probe();
 
-  global.errorRate = Probe.meter({
-    name : 'Error rate',
-    alert : {
-      mode : 'threshold-avg',
-      value : 1,
-      msg : 'Lot of queries are being failed'
-    }
+  var WORKER_INTERVAL       = (conf.workerInterval * 1000) || 2000;
+  var ELASTICSEARCH_URI     = conf.elasticsearchUri || process.env.PM2_ELASTICSEARCH_URI;
+
+  var client = new elasticsearch.Client({
+    host: ELASTICSEARCH_URI,
+    log: 'error'
   });
 
-  request(conf.es_url, function (error, response, body) {
-    if (error) {
-      errorRate.mark();
-      throw new Error('Cannot connect to ' + conf.es_url + ' elastic node');
-    }
-  });
+  // register all workers
+  var stats = new Stats(WORKER_INTERVAL, client);
 
-  request(conf.es_url + '/_nodes/_local/settings', function (error, response, body) {
-    var result = JSON.parse(body);
+  // init all probes
+  stats.init();
+  stats.update();
 
-    var node = Object.keys(result.nodes)[0];
-    esName.set(result.nodes[node].name);
-  });
+  // start all workers
+  setInterval(stats.update.bind(stats), WORKER_INTERVAL);
 
-  var esName = Probe.metric({
-    name: 'Node name',
-    value : function() { return 'N/A'; }
-  });
-
+  /** Register PMX actions */
   pmx.action('restart', function(reply) {
-    var child = shelljs.exec('/etc/init.d/elasticsearch restart');
-    return reply(child);
+    exec('/etc/init.d/elasticsearch restart', function (err, out, error) {
+      if (err) return reply(err);
+      else
+        return reply(out);
+    });
   });
 
 });

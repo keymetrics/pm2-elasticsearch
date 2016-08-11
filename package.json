@@ -1,6 +1,6 @@
 {
   "name": "pm2-elasticsearch",
-  "version": "0.14.0",
+  "version": "2.0.0",
   "homepage": "https://keymetrics.io/",
   "description": "Monitoring module for elasticsearch",
   "keywords": [
@@ -13,15 +13,14 @@
     "start": "node app"
   },
   "dependencies": {
-    "pmx": "keymetrics/pmx",
-    "request": "*",
-    "shelljs": "*"
+    "pmx": "*",
+    "elasticsearch": "*"
   },
   "config": {
-    "es_url": "http://localhost:9200/"
+    "elasticsearchUri": "http://status.hardfight.fr:9200/"
   },
-  "author": "Keymetrics Inc.",
-  "license": "AGPLV3",
+  "author": "vmarchaud",
+  "license": "MIT",
   "apps": [
     {
       "name": "pm2-elasticsearch",
