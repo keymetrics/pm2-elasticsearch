@@ -17,7 +17,8 @@
     "elasticsearch": "*"
   },
   "config": {
-    "elasticsearchUri": "http://status.hardfight.fr:9200/"
+    "workerInterval": 2,
+    "elasticsearchUri": "http://localhost:9200/"
   },
   "author": "vmarchaud",
   "license": "MIT",

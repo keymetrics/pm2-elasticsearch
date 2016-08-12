@@ -5,10 +5,10 @@
  */
 
 var pmx             = require('pmx');
-var exec            = require('child_process').exec;
 var elasticsearch   = require('elasticsearch');
 var Probe           = pmx.probe();
 var Stats           = require('./lib/stats');
+var Actions         = require('./lib/actions');
 
 pmx.initModule({
 
@@ -56,12 +56,7 @@ pmx.initModule({
   setInterval(stats.update.bind(stats), WORKER_INTERVAL);
 
   /** Register PMX actions */
-  pmx.action('restart', function(reply) {
-    exec('/etc/init.d/elasticsearch restart', function (err, out, error) {
-      if (err) return reply(err);
-      else
-        return reply(out);
-    });
-  });
+  var actions = new Actions();
+  actions.register();
 
 });
