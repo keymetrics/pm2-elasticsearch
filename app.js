@@ -56,7 +56,7 @@ pmx.initModule({
   setInterval(stats.update.bind(stats), WORKER_INTERVAL);
 
   /** Register PMX actions */
-  var actions = new Actions();
+  var actions = new Actions(client);
   actions.register();
 
 });
