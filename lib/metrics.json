@@ -1,0 +1,167 @@
+[
+  {
+    "from": "node",
+    "path": "fs.io_stats.total.write_operations",
+    "compareToLastValue": true,
+    "name": "Write Ops",
+    "unit": "secs"
+  },
+  {
+    "from": "node",
+    "path": "fs.io_stats.total.read_operations",
+    "compareToLastValue": true,
+    "name": "Read Ops",
+    "unit": "secs"
+  },
+  {
+    "from": "node",
+    "path": "fs.io_stats.total.read_kilobytes",
+    "compareToLastValue": true,
+    "name": "Read Bandwith",
+    "unit": "ko/s"
+  },
+  {
+    "from": "node",
+    "path": "fs.io_stats.total.write_kilobytes",
+    "compareToLastValue": true,
+    "name": "Write Bandwith",
+    "unit": "ko/s"
+  },
+  {
+    "from": "node",
+    "path": "process.open_file_descriptors",
+    "name": "Open FDs"
+  },
+  {
+    "from": "node",
+    "path": "jvm.mem.heap_used_percent",
+    "name": "Heap Usage",
+    "unit": "%"
+  },
+  {
+    "from": "node",
+    "path": "jvm.threads.count",
+    "name": "Threads count"
+  },
+  {
+    "from": "node",
+    "path": "http.current_open",
+    "name": "HTTP request"
+  },
+  {
+    "from": "node",
+    "path": "jvm.gc.collectors.young.collection_time_in_millis",
+    "divide_by": "jvm.gc.collectors.young.collection_count",
+    "name": "GC Young Avg",
+    "unit": "ms"
+  },
+  {
+    "from": "node",
+    "path": "jvm.gc.collectors.old.collection_time_in_millis",
+    "divide_by": "jvm.gc.collectors.old.collection_count",
+    "name": "GC Old Avg",
+    "unit": "ms"
+  },
+  {
+    "from": "node",
+    "path": "indices.indexing.index_time_in_millis",
+    "divide_by": "indices.indexing.index_total",
+    "name": "Index Latency",
+    "unit": "ms"
+  },
+  {
+    "from": "node",
+    "path": "indices.get.time_in_millis",
+    "divide_by": "indices.get.total",
+    "name": "Get Latency",
+    "unit": "ms"
+  },
+  {
+    "from": "node",
+    "path": "indices.search.query_time_in_millis",
+    "divide_by": "indices.search.query_total",
+    "name": "Query Latency",
+    "unit": "ms"
+  },
+  {
+    "from": "node",
+    "path": "indices.search.fetch_time_in_millis",
+    "divide_by": "indices.search.fetch_total",
+    "name": "Fetch Latency",
+    "unit": "ms"
+  },
+  {
+    "from": "node",
+    "path": "indices.merges.total_time_in_millis",
+    "divide_by": "indices.merges.total",
+    "name": "Merge Latency",
+    "unit": "ms"
+  },
+  {
+    "from": "node",
+    "path": "indices.refresh.total_time_in_millis",
+    "divide_by": "indices.refresh.total",
+    "name": "Refresh Latency",
+    "unit": "ms"
+  },
+  {
+    "from": "node",
+    "path": "indices.segments.count",
+    "name": "Segments Count"
+  },
+  {
+    "from": "node",
+    "path": "indices.indexing.index_current",
+    "name": "Current Indexing"
+  },
+  {
+    "from": "node",
+    "path": "indices.search.querry_current",
+    "name": "Current Queries"
+  },
+  {
+    "from": "cluster",
+    "path": "status",
+    "name": "Elastic status"
+  },
+  {
+    "from": "cluster",
+    "path": "cluster_name",
+    "name": "Cluster"
+  },
+  {
+    "from": "cluster",
+    "path": "indices.docs.count",
+    "name": "Documents"
+  },
+  {
+    "from": "cluster",
+    "path": "indices.docs.deleted",
+    "name": "Deleted Documents"
+  },
+  {
+    "from": "cluster",
+    "path": "indices.store.size",
+    "name": "Store size"
+  },
+  {
+    "from": "cluster",
+    "path": "nodes.count.total",
+    "name": "Nodes"
+  },
+  {
+    "from": "cluster",
+    "path": "nodes.jvm.max_uptime",
+    "name": "Uptime"
+  },
+  {
+    "from": "cluster",
+    "path": "indices.shards.total",
+    "name": "Shards"
+  },
+  {
+    "from": "cluster",
+    "path": "indices.count",
+    "name": "Indices"
+  }
+]

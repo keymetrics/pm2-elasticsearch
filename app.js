@@ -7,7 +7,7 @@
 var pmx             = require('pmx');
 var elasticsearch   = require('elasticsearch');
 var Probe           = pmx.probe();
-var Stats           = require('./lib/stats');
+var stats           = require('./lib/stats');
 var Actions         = require('./lib/actions');
 
 pmx.initModule({
@@ -16,14 +16,8 @@ pmx.initModule({
                                           '/var/run/elasticsearch.pid']),
   widget : {
     type             : 'generic',
-    logo             : 'https://www.elastic.co/static/img/logo-elastic.png',
-
-    // 0 = main element
-    // 1 = secondary
-    // 2 = main border
-    // 3 = secondary border
+    logo: 'https://www.elastic.co/static/img/logo-elastic.png',
     theme            : ['#39bdb1', '#1B2228', 'white', '#807C7C'],
-
     el : {
       probes  : true,
       actions : true
@@ -36,27 +30,23 @@ pmx.initModule({
     }
   }
 }, function(err, conf) {
-
-  var WORKER_INTERVAL       = (conf.workerInterval * 1000) || 2000;
   var ELASTICSEARCH_URI     = conf.elasticsearchUri || process.env.PM2_ELASTICSEARCH_URI;
 
   var client = new elasticsearch.Client({
     host: ELASTICSEARCH_URI,
     log: 'error'
-  });
-
-  // register all workers
-  var stats = new Stats(WORKER_INTERVAL, client);
+  })
 
   // init all probes
-  stats.init();
-  stats.update();
+  stats.init()
+  stats.update(client)
 
   // start all workers
-  setInterval(stats.update.bind(stats), WORKER_INTERVAL);
+  setInterval(function () {
+    return stats.update(client)
+  }, 1000)
 
   /** Register PMX actions */
-  var actions = new Actions(client);
-  actions.register();
-
-});
+  var actions = new Actions(client)
+  actions.register()
+})
