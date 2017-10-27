@@ -116,7 +116,7 @@
   },
   {
     "from": "node",
-    "path": "indices.search.querry_current",
+    "path": "indices.search.query_current",
     "name": "Current Queries"
   },
   {
