@@ -1,8 +1,11 @@
 {
   "name": "pm2-elasticsearch",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "homepage": "https://keymetrics.io/",
   "description": "Monitoring module for elasticsearch",
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "keywords": [
     "elasticsearch",
     "es",
