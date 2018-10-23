@@ -13,13 +13,12 @@
     "start": "node app"
   },
   "dependencies": {
+    "@pm2/io": "^2.4.5",
     "async": "^2.5.0",
     "elasticsearch": "*",
-    "object-path": "^0.11.4",
-    "pmx": "*"
+    "object-path": "^0.11.4"
   },
   "config": {
-    "workerInterval": 2,
     "elasticsearchUri": "http://localhost:9200/"
   },
   "author": "vmarchaud",

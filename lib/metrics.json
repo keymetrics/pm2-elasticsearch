@@ -4,28 +4,28 @@
     "path": "fs.io_stats.total.write_operations",
     "compareToLastValue": true,
     "name": "Write Ops",
-    "unit": "secs"
+    "unit": "/min"
   },
   {
     "from": "node",
     "path": "fs.io_stats.total.read_operations",
     "compareToLastValue": true,
     "name": "Read Ops",
-    "unit": "secs"
+    "unit": "/min"
   },
   {
     "from": "node",
     "path": "fs.io_stats.total.read_kilobytes",
     "compareToLastValue": true,
     "name": "Read Bandwith",
-    "unit": "ko/s"
+    "unit": "ko/min"
   },
   {
     "from": "node",
     "path": "fs.io_stats.total.write_kilobytes",
     "compareToLastValue": true,
     "name": "Write Bandwith",
-    "unit": "ko/s"
+    "unit": "ko/min"
   },
   {
     "from": "node",
@@ -120,29 +120,53 @@
     "name": "Current Queries"
   },
   {
-    "from": "cluster",
-    "path": "status",
-    "name": "Elastic status"
-  },
-  {
-    "from": "cluster",
-    "path": "cluster_name",
-    "name": "Cluster"
-  },
-  {
-    "from": "cluster",
+    "from": "node",
     "path": "indices.docs.count",
     "name": "Documents"
   },
   {
-    "from": "cluster",
+    "from": "node",
     "path": "indices.docs.deleted",
     "name": "Deleted Documents"
   },
   {
-    "from": "cluster",
+    "from": "node",
     "path": "indices.store.size",
     "name": "Store size"
+  },
+  {
+    "from": "node",
+    "path": "process.cpu.percent",
+    "name": "CPU Usage",
+    "unit": "%"
+  },
+  {
+    "from": "node",
+    "path": "os.mem.used_percent",
+    "name": "Memory Usage",
+    "unit": "%"
+  },
+  {
+    "from": "node",
+    "path": "os.swap.used_in_bytes",
+    "divide_by": "os.swap.total_in_bytes",
+    "multiply_by": 100,
+    "name": "Swap Memory Usage",
+    "unit": "%"
+  },
+  {
+    "from": "node",
+    "path": "thread_pool.bulk.completed",
+    "name": "Bulk Op. Completed",
+    "compareToLastValue": true,
+    "unit": "/min"
+  },
+  {
+    "from": "node",
+    "path": "thread_pool.bulk.rejected",
+    "name": "Bulk Op. Failed",
+    "compareToLastValue": true,
+    "unit": "/min"
   },
   {
     "from": "cluster",
@@ -156,12 +180,68 @@
   },
   {
     "from": "cluster",
-    "path": "indices.shards.total",
-    "name": "Shards"
+    "path": "indices.count",
+    "name": "Indices"
   },
   {
     "from": "cluster",
-    "path": "indices.count",
-    "name": "Indices"
+    "path": "status",
+    "name": "Elastic status"
+  },
+  {
+    "from": "cluster",
+    "path": "cluster_name",
+    "name": "Cluster"
+  },
+  {
+    "from": "cluster",
+    "path": "indices.shards.replication",
+    "name": "Active Secondy Shards"
+  },
+  {
+    "from": "cluster",
+    "path": "indices.shards.index.shards.avg",
+    "name": "Avg. Shards per Index"
+  },
+  {
+    "from": "cluster",
+    "path": "indices.shards.index.primaries.avg",
+    "name": "Avg. Primary Shards per Index"
+  },
+  {
+    "from": "cluster",
+    "path": "indices.shards.index.replication.avg",
+    "name": "Avg. Secondary Shards per Index"
+  },
+  {
+    "from": "cluster_health",
+    "path": "active_shards",
+    "name": "Active Shards"
+  },
+  {
+    "from": "cluster_health",
+    "path": "active_primary_shards",
+    "name": "Active Primary Shards"
+  },
+  {
+    "from": "cluster_health",
+    "path": "unassigned_shards",
+    "name": "Unassigned Shards"
+  },
+  {
+    "from": "cluster_health",
+    "path": "relocating_shards",
+    "name": "Relocating Shards"
+  },
+  {
+    "from": "cluster_health",
+    "path": "number_of_pending_tasks",
+    "name": "Pending Tasks"
+  },
+  {
+    "from": "cluster_health",
+    "path": "task_max_waiting_in_queue_millis",
+    "name": "Max Task Queue Duration",
+    "unit": "ms"
   }
 ]
