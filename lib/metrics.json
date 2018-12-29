@@ -29,6 +29,14 @@
   },
   {
     "from": "node",
+    "path": "fs.total.available_in_bytes",
+    "divide_by": "fs.total.total_in_bytes",
+    "multiply_by": 100,
+    "name": "Free Disk Space",
+    "unit": "%"
+  },
+  {
+    "from": "node",
     "path": "process.open_file_descriptors",
     "name": "Open FDs"
   },
