@@ -26,7 +26,7 @@ io.initModule({
     console.error(err)
     return process.exit(1)
   }
-  const ELASTICSEARCH_URI = conf.elasticsearchUri || process.env.PM2_ELASTICSEARCH_URI
+  const ELASTICSEARCH_URI = conf.elasticsearchUri || process.env.PM2_ELASTICSEARCH_URI || 'localhost:9200'
 
   const client = new elasticsearch.Client({
     host: ELASTICSEARCH_URI,
